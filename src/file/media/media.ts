@@ -55,7 +55,7 @@ export class Media {
 
         // TODO: Allow this to be configured as some sort of option
         if (4 > 2) {
-            key = `image${this.imageCount}.png`;
+            key = `image${this.imageCount + 1}.png`;
         }
 
         return this.createMedia(

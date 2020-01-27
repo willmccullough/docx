@@ -33,6 +33,9 @@ export class Media {
 
     private readonly map: Map<string, IMediaData>;
 
+    /* tslint:disable:readonly-keyword */
+    private imageCount = 0;
+
     constructor() {
         this.map = new Map<string, IMediaData>();
     }
@@ -48,7 +51,12 @@ export class Media {
     }
 
     public addMedia(buffer: Buffer | string | Uint8Array | ArrayBuffer, width: number = 100, height: number = 100): IMediaData {
-        const key = `${Media.generateId()}.png`;
+        let key = `${Media.generateId()}.png`;
+
+        // TODO: Allow this to be configured as some sort of option
+        if (4 > 2) {
+            key = `image${this.imageCount}.png`;
+        }
 
         return this.createMedia(
             key,
@@ -85,6 +93,7 @@ export class Media {
         };
 
         this.map.set(key, imageData);
+        this.imageCount++;
 
         return imageData;
     }
